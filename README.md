@@ -106,7 +106,6 @@ Check the distribution of the target in the cell below.
 
 
 ```python
-#__SOLUTION__
 df['label'].value_counts()
 ```
 
@@ -143,7 +142,6 @@ from sklearn.preprocessing import LabelEncoder
 
 
 ```python
-#__SOLUTION__
 le = LabelEncoder()
 df['label'] = le.fit_transform(df['label'])
 ```
@@ -177,7 +175,6 @@ from sklearn.model_selection import train_test_split
 
 
 ```python
-#__SOLUTION__
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(df[['text']], df['label'], 
@@ -218,7 +215,6 @@ After you are finished, generate a confusion matrix of your "test" predictions. 
 
 
 ```python
-#__SOLUTION__
 # pass the pipeline into sklearn's cross validate function.  
 from sklearn.model_selection import cross_validate
 from sklearn.metrics import make_scorer
@@ -251,7 +247,6 @@ cv
 
 
 ```python
-#__SOLUTION__
 
 # Pass the pipeline, as well as X_train['text'] and y_train to cross_val_predict
 from sklearn.model_selection import cross_val_predict
@@ -261,7 +256,6 @@ y_hat_train = cross_val_predict(pipe, X_train['text'], y_train)
 
 
 ```python
-#__SOLUTION__
 # Create a confusion matrix with the results of cross_val_predict
 from sklearn.metrics import confusion_matrix
 confusion_matrix(y_train, y_hat_train)
@@ -295,7 +289,6 @@ What you should consider:
 
 
 ```python
-#__SOLUTION__
 from sklearn.model_selection import GridSearchCV
 # Define new pipeline with default parameters for tfidf and multinomialNB
 parameter_dict = {'tfidfvectorizer__max_features':[25,50,100,1000]}
@@ -318,7 +311,6 @@ gs.fit(X_train['text'], y_train)
 
 
 ```python
-#__SOLUTION__
 parameter_dict = {'tfidfvectorizer__max_features': [100,500, 1000, 2000, 3000, 4000], 
                  'tfidfvectorizer__stop_words': [None, stopwords.words('english')]}
 
@@ -341,7 +333,6 @@ def gs_tfidf(parameter_dict, pipe, verbose=True):
 
 
 ```python
-#__SOLUTION__
 gs_tfidf(parameter_dict, pipe)
 ```
 
@@ -360,7 +351,6 @@ gs_tfidf(parameter_dict, pipe)
 
 
 ```python
-#__SOLUTION__
 parameter_dict = {'tfidfvectorizer__max_features': [None, 500,1000, 1500, 2000], 
                  'tfidfvectorizer__stop_words': [None, stopwords.words('english')],
                   'tfidfvectorizer__max_df': [1.0, .9, .8], 
@@ -385,7 +375,6 @@ gs_tfidf(parameter_dict, pipe)
 
 
 ```python
-#__SOLUTION__
 from sklearn.ensemble import RandomForestClassifier
 parameter_dict = {'tfidfvectorizer__max_features': [1500, 2000],
                   'tfidfvectorizer__max_df': [1.0,.9, .8], 
